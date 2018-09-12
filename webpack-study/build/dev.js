@@ -1,3 +1,5 @@
+// 此文件用于编译出未压缩代码，用来学习webpack打包原理
+
 const webpack = require('webpack')
 const webpackDevConfig = require('./webpack.dev.config')
 
