@@ -1,17 +1,20 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-module.exports = {
+const merge = require('webpack-merge')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const baseConfig = require('./webpack.base.config')
+
+module.exports = merge({
   mode: 'development',
-  entry: './src/index.js',
-  output: {
-      path: path.resolve(__dirname, '../dist'),
-      filename: 'bundle.js'
-  },
   plugins: [
+    new CleanWebpackPlugin(['dist'], {
+      root: path.resolve(__dirname, '../')
+    }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: 'index.html'
     })
   ]
-}
+})
+
