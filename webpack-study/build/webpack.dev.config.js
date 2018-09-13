@@ -20,9 +20,9 @@ module.exports = merge({
     proxy: {}
   },
   plugins: [
-    // new CleanWebpackPlugin(['dist'], {
-    //   root: path.resolve(__dirname, '../')
-    // }),
+    new CleanWebpackPlugin(['dist'], {
+      root: path.resolve(__dirname, '../')
+    }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: 'index.html'

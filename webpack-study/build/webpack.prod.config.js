@@ -21,7 +21,7 @@ module.exports = merge(baseConfig, {
     },
     // 默认提供了压缩代码功能，当然也可以使用第三方插件来压缩代码.
     // 空数组则不压缩代码
-    // minimizer: [], // [new UglifyJsPlugin({...}), new OptimizeCSSAssetsPlugin()]
+    minimizer: [], // [new UglifyJsPlugin({...}), new OptimizeCSSAssetsPlugin()]
     splitChunks: {
       chunks: 'all',
       minSize: 30000, // 提取代码最小尺寸为30kb，小于30kb则不提取
