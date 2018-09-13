@@ -13,7 +13,8 @@ module.exports = merge(baseConfig, {
       path: path.resolve(__dirname, '../dist'),
       // 设置splitChunks之后，需要把bundle改成[name]
       filename: '[name].[chunkhash].js',
-      chunkFilename: "[name].[chunkhash].js"
+      chunkFilename: "[name].[chunkhash].js",
+      publicPath: './'
   },
   optimization: {
     // 提取webpack require模块化代码，也就是经常看见的manifest.js
