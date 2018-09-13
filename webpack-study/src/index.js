@@ -3,6 +3,8 @@ import app2 from './app2.js';
 
 // import $ from 'jquery'
 
+import './index.css'
+
 function component() {
   app1();
   app2();

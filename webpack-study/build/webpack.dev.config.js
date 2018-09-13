@@ -8,7 +8,7 @@ const localIp = require('ip').address()
 
 const baseConfig = require('./webpack.base.config')
 
-module.exports = merge({
+module.exports = merge(baseConfig, {
   mode: 'development',
   devServer: {
     port: 8080,

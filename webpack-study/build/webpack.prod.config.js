@@ -3,9 +3,10 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const merge = require('webpack-merge')
-
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const baseConfig = require('./webpack.base.config')
-
+// wepback merge 并不只是简单的合并，比如module中的rules是个数组，数组中的每一项也会合并，而一般的合并会替换掉，像Object.assign
 module.exports = merge(baseConfig, {
   mode: 'production',
   output: {
@@ -47,6 +48,24 @@ module.exports = merge(baseConfig, {
       }
     }
   },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              // you can specify a publicPath here
+              // by default it use publicPath in webpackOptions.output
+              // publicPath: '../'
+            }
+          }, 
+          // "style-loader",
+          "css-loader"]
+      }
+    ]
+  },
   plugins: [
     new CleanWebpackPlugin(['dist'], {
       root: path.resolve(__dirname, '../')
@@ -55,6 +74,10 @@ module.exports = merge(baseConfig, {
       template: './src/index.html',
       filename: 'index.html'
     }),
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+      chunkFilename: "[name].[chunkhash].css"
+    })
   ]
 })
 
