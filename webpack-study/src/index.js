@@ -24,6 +24,13 @@ var sleep = function(){
   })
 }
 
+import(/* webpackChunkName: "appasync" */'./app.async.js').then(( {test} )=>{
+  console.log(test())
+})
+
+
 // $('body').append('<p>hello world!!!</p>')
+
+document.querySelector('body').appendChild(document.createTextNode('Hello world!!!'))
 
 export default component
