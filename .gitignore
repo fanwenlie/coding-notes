@@ -1,6 +1,7 @@
 # other
 .git
 .vscode
+dist/
 
 # Logs
 logs
