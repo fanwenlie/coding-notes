@@ -2,14 +2,13 @@
   "name": "koa-study",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "start": "node src/app.js",
     "test": "mocha ./src/test",
     "debug": "node --inspect src/app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "fwl",
   "license": "ISC",
   "dependencies": {
     "ejs": "^2.6.1",

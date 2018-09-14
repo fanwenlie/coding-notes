@@ -10,6 +10,7 @@ const baseConfig = require('./webpack.base.config')
 
 module.exports = merge(baseConfig, {
   mode: 'development',
+  devtool: 'cheap-source-map',
   devServer: {
     port: 8080,
     // 设置为本机ip，可以通过ip来打开网页，这样移动端也可以输入ip地址来访问网页
@@ -28,19 +29,20 @@ module.exports = merge(baseConfig, {
             loader: "style-loader"
           },
           {
-            loader: "css-loader"
+            loader: "css-loader",
+            options: {
+              sourceMap: true
+            }
           }
         ]
       }
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(['dist'], {
-      root: path.resolve(__dirname, '../')
-    }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: 'index.html'
-    })
+    }),
+    new webpack.NamedModulesPlugin()
   ]
 })
