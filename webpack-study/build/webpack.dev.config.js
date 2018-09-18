@@ -14,11 +14,18 @@ module.exports = merge(baseConfig, {
   devServer: {
     port: 8080,
     // 设置为本机ip，可以通过ip来打开网页，这样移动端也可以输入ip地址来访问网页
-    host: localIp, 
+    host: localIp,
     contentBase: path.join(__dirname, 'dist'),
-    open: true,
+    open: false,
     publicPath: '/',
     proxy: {}
+  },
+  // 告诉webpack去那个目录下找loader模块
+  resolveLoader: {
+    modules: [
+        path.resolve('node_modules'),
+        path.resolve('src', 'loaders'),
+    ]
   },
   module: {
     rules: [
@@ -35,6 +42,39 @@ module.exports = merge(baseConfig, {
             }
           }
         ]
+      },
+      {
+        test: /\_loader\_test\.js$/,
+        use: [
+          // 注意这几个loader的顺序
+          {
+            loader: "first-loader",
+            options: {
+              name: 'fwl'
+            }
+          },
+          {
+            loader: "second-loader",
+            options: {
+              // text: 'second test!!!'
+              filename: path.resolve(__dirname, '../src/second_loader_test.txt')
+            }
+          },
+          {
+            loader: "four-loader",
+            options: {}
+          }
+          
+        ]
+      },
+      {
+        test: /\.png$/,
+        use: {
+          loader: 'three-loader',
+          options: {
+            limit: 1024
+          }
+        }
       }
     ]
   },
