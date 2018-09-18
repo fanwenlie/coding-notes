@@ -29,20 +29,20 @@ module.exports = merge(baseConfig, {
   },
   module: {
     rules: [
-      {
-        test: /\.css$/,
-        use: [ 
-          {
-            loader: "style-loader"
-          },
-          {
-            loader: "css-loader",
-            options: {
-              sourceMap: true
-            }
-          }
-        ]
-      },
+      // {
+      //   test: /\.css$/,
+      //   use: [ 
+      //     {
+      //       loader: "style-loader"
+      //     },
+      //     {
+      //       loader: "css-loader",
+      //       options: {
+      //         sourceMap: true
+      //       }
+      //     }
+      //   ]
+      // },
       {
         test: /\_loader\_test\.js$/,
         use: [
@@ -74,6 +74,12 @@ module.exports = merge(baseConfig, {
           options: {
             limit: 1024
           }
+        }
+      },
+      {
+        test: /\.css$/,
+        use: {
+          loader: 'extract-loader'
         }
       }
     ]
