@@ -8,6 +8,12 @@ const localIp = require('ip').address()
 
 const baseConfig = require('./webpack.base.config')
 
+const DonePlugin = require('../src/plugins/1.DonePlugin')
+const CompilationPlugin = require('../src/plugins/2.CompilationPlugin')
+const AsyncPlugin = require('../src/plugins/3.AsyncPlugin')
+const FileListPlugin = require('../src/plugins/4.FileListPlugin')
+const CustomHookPlugin = require('../src/plugins/5.CustomHookPlugin')
+
 module.exports = merge(baseConfig, {
   mode: 'development',
   devtool: 'cheap-source-map',
@@ -89,6 +95,11 @@ module.exports = merge(baseConfig, {
       template: './src/index.html',
       filename: 'index.html'
     }),
-    new webpack.NamedModulesPlugin()
+    new webpack.NamedModulesPlugin(),
+    // new DonePlugin({options: true}),
+    // new CompilationPlugin({options: true}),
+    // new AsyncPlugin(),
+    // new FileListPlugin(),
+    new CustomHookPlugin()
   ]
 })
