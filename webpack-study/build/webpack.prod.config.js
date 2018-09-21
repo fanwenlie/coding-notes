@@ -41,11 +41,11 @@ module.exports = merge(baseConfig, {
       name: 'manifest'
     },
     splitChunks: {
-      chunks: 'all',
-      minSize: 30000, // 提取代码最小尺寸为30kb，小于30kb则不提取
+      chunks: 'all', // 将node_modules中使用的内容都提取出来
+      minSize: 30000, // 提取代码最小尺寸为30kb，小于30kb则不提取, 其实并不合理
       minChunks: 1,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
+      maxAsyncRequests: 5, // 拆分异步bundle最多5个
+      maxInitialRequests: 3, // 分割输出文件最多为 3 个
       name: true,
       automaticNameDelimiter: '~',
       cacheGroups: {

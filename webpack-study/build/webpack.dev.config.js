@@ -100,6 +100,6 @@ module.exports = merge(baseConfig, {
     // new CompilationPlugin({options: true}),
     // new AsyncPlugin(),
     // new FileListPlugin(),
-    new CustomHookPlugin()
+    new CustomHookPlugin(),
   ]
 })

@@ -16,7 +16,8 @@ class CustomHookPlugin {
     this.hooks.show.tap('懒得打字', ()=>{
       console.log('CustomHookPlugin 自定义hook show函数内部')
     })
-
+    // done是异步串行 AsyncSeriesBailHook 注意其特点
+    // 如果setTimeout时间设置为十秒，
     compiler.hooks.done.tapPromise('随便打试试', (stats)=>{
       return new Promise((resolve, reject)=>{
         setTimeout(()=>{
