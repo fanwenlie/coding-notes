@@ -23,10 +23,15 @@ queue.tap('3', function (data) {
 
 queue.call('webpack');
 
+/** 输出
+ * webpack 1
+ * a 2
+ * b 3
+ */
 
 // 原理实现-------------------------------------------------
 
-class _SyncWaterfailHook {
+class _SyncWaterfallHook {
 	constructor(args) {
 		this.args = args;
 		this.tasks = [];
