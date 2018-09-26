@@ -5,6 +5,7 @@ const {SyncHook} = require('tapable');
 class CustomHookPlugin {
   constructor(options){
     this.options = options;
+    // tapable官网推荐使用此种方式扩展hooks
     this.hooks = {
       show: new SyncHook()
     }

@@ -15,7 +15,7 @@ queue.tap('1', function (name) {
 });
 queue.tap('2', function (data) {
 	console.log(data, 2);
-	return 'b';
+	// return 'b';
 });
 queue.tap('3', function (data) {
 	console.log(data, 3);
