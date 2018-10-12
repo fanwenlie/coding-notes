@@ -2,6 +2,7 @@
 .git
 .vscode
 dist/
+node-study/
 
 # Logs
 logs

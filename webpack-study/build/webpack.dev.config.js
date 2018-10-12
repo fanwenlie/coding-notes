@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const merge = require('webpack-merge')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const localIp = require('ip').address()
 
 
@@ -18,11 +19,24 @@ module.exports = merge(baseConfig, {
   mode: 'development',
   devtool: 'cheap-source-map',
   devServer: {
+    //HMR控制台log等级
+    clientLogLevel: "warning",
     port: 8080,
     // 设置为本机ip，可以通过ip来打开网页，这样移动端也可以输入ip地址来访问网页
     host: localIp,
     contentBase: path.join(__dirname, 'dist'),
     open: false,
+    // 热加载
+    hot: true,
+    //自动刷新
+    inline: true,
+    // 在浏览器上全屏显示编译的errors或warnings。
+    overlay: {
+      errors: true,
+      warnings: false
+    },
+    // 终端输出的只有初始启动信息。 webpack 的警告和错误是不输出到终端的
+    quiet: true,
     publicPath: '/',
     proxy: {}
   },
@@ -91,11 +105,21 @@ module.exports = merge(baseConfig, {
     ]
   },
   plugins: [
+    // 热更新
+    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      filename: 'index.html'
+      filename: 'index.html',
+      inject: true
     }),
     new webpack.NamedModulesPlugin(),
+    new FriendlyErrorsPlugin({
+      compilationSuccessInfo: {
+        messages: [
+          `Your application is running here: http://${localIp}:${8080}`
+        ]
+      },
+    }),
     // new DonePlugin({options: true}),
     // new CompilationPlugin({options: true}),
     // new AsyncPlugin(),
