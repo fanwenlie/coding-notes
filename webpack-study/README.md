@@ -1,0 +1,4 @@
+- 学习如何构建脚手架，以vue-cli 2+为参考
+- 学习tapable原理
+- 学习如何编写loader
+- 学习如何编写plugin
