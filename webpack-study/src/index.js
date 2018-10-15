@@ -30,7 +30,7 @@ import(/* webpackChunkName: "appasync" */'./app.async.js').then(( {test} )=>{
 // 第一次编写loader
 import './first_loader_test.js'
 // 供three-loader使用
-import './logo.png'
+// import './logo.png'
 
 // $('body').append('<p>hello world!!!</p>')
 

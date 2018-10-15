@@ -5,7 +5,7 @@ const merge = require('webpack-merge')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const localIp = require('ip').address()
-
+const notifier = require('node-notifier')
 
 const baseConfig = require('./webpack.base.config')
 
@@ -92,16 +92,16 @@ module.exports = merge(baseConfig, {
           
       //   ]
       // },
-      {
-        test: /\.png$/,
-        use: {
-          // 自定义loader
-          loader: 'three-loader',
-          options: {
-            limit: 1024
-          }
-        }
-      },
+      // {
+      //   test: /\.png$/,
+      //   use: {
+      //     // 自定义loader
+      //     loader: 'three-loader',
+      //     options: {
+      //       limit: 1024
+      //     }
+      //   }
+      // },
       // {
       //   test: /\.css$/,
       //   use: {
@@ -126,6 +126,19 @@ module.exports = merge(baseConfig, {
           `Your application is running here: http://${localIp}:${8080}`
         ]
       },
+      // onErrors: (severity, errors) => {
+      //   if (severity !== 'error') {
+      //     return;
+      //   }
+      //   console.log(11111)
+      //   const error = errors[0];
+      //   notifier.notify({
+      //     title: "Webpack error",
+      //     message: severity + ': ' + error.name,
+      //     subtitle: error.file || '',
+      //     icon: ICON
+      //   });
+      // }
     }),
     // new DonePlugin({options: true}),
     // new CompilationPlugin({options: true}),

@@ -15,10 +15,10 @@ module.exports = merge(baseConfig, {
 	output: {
 		path: path.resolve(__dirname, "../dist"),
 		// 设置splitChunks之后，需要把bundle改成[name]
-		filename: "[name].[chunkhash].js",
+		filename: path.join('static', 'js/[name].[chunkhash].js'),
 		// 决定非入口 chunk 的名称
-		chunkFilename: "[name].[chunkhash].js",
-		publicPath: "./"
+		chunkFilename: path.join('static', 'js/[name].[chunkhash].js'),
+		publicPath: "static"
 	},
 	devtool: "source-map",
 	optimization: {
@@ -38,7 +38,7 @@ module.exports = merge(baseConfig, {
 			name: "manifest"
 		},
 		splitChunks: {
-			chunks: "all", // 将node_modules中使用的内容都提取出来
+			chunks: "all", // all|async|initial,  将node_modules中使用的内容都提取出来
 			minSize: 30000, // 提取代码最小尺寸为30kb，小于30kb则不提取, 其实并不合理
 			minChunks: 1,
 			maxAsyncRequests: 5, // 拆分异步bundle最多5个
@@ -57,7 +57,7 @@ module.exports = merge(baseConfig, {
 					test: /[\\/]node_modules[\\/]/,
 					priority: 2, // 缓存组优先级, 防止和自定义的公共代码提取时被覆盖，不进行打包
 					name: "vendor",
-					chunks: "all"
+					chunks: "all" // 意味着不管是初始chunk，还是async chunk，都能共享vendor
 				}
 			}
 		}
@@ -87,12 +87,18 @@ module.exports = merge(baseConfig, {
 		]
 	},
 	plugins: [
+		// 每个chunk头部添加说明
+		new webpack.BannerPlugin("hey, fwl"),
+		// 生成html，并注入js
 		new HtmlWebpackPlugin({
 			template: "./src/index.html",
 			filename: "index.html",
 			minify: {
+				// 删除注释
 				removeComments: true,
+				// 去除空格
 				collapseWhitespace: true,
+				// 去除属性引号
 				removeRedundantAttributes: true,
 				useShortDoctype: true,
 				removeEmptyAttributes: true,
@@ -101,13 +107,14 @@ module.exports = merge(baseConfig, {
 				minifyJS: true,
 				minifyCSS: true,
 				minifyURLs: true
-      },
+			},
+			//根据依赖引入chunk
       chunksSortMode: 'dependency'
 		}),
 		// 抽离插入到head style中的样式，打包到一个css文件中
 		new MiniCssExtractPlugin({
-			filename: "[name].css",
-			chunkFilename: "[name].[chunkhash].css"
+			filename: path.join('static', "css/[name].[chunkhash].css"),
+			chunkFilename: path.join('static', "css/[name].[chunkhash].css")
 		}),
 		// 因为webpack默认模块名是数字，可以通过该插件来固定模块名
 		new webpack.HashedModuleIdsPlugin()
