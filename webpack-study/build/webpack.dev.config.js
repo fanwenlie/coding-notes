@@ -49,59 +49,66 @@ module.exports = merge(baseConfig, {
   },
   module: {
     rules: [
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: [ 
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader",
+            options: {
+              sourceMap: true,
+              importLoaders: 1,
+            }
+          },
+          {
+            loader: "postcss-loader"
+          }
+        ]
+      },
       // {
-      //   test: /\.css$/,
-      //   use: [ 
+      //   test: /\_loader\_test\.js$/,
+      //   use: [
+      //     // 注意这几个loader的顺序
       //     {
-      //       loader: "style-loader"
+      //       loader: "first-loader",
+      //       options: {
+      //         name: 'fwl'
+      //       }
       //     },
       //     {
-      //       loader: "css-loader",
+      //       loader: "second-loader",
       //       options: {
-      //         sourceMap: true
+      //         // text: 'second test!!!'
+      //         filename: path.resolve(__dirname, '../src/second_loader_test.txt')
       //       }
+      //     },
+      //     {
+      //       loader: "four-loader",
+      //       options: {}
       //     }
+          
       //   ]
       // },
       {
-        test: /\_loader\_test\.js$/,
-        use: [
-          // 注意这几个loader的顺序
-          {
-            loader: "first-loader",
-            options: {
-              name: 'fwl'
-            }
-          },
-          {
-            loader: "second-loader",
-            options: {
-              // text: 'second test!!!'
-              filename: path.resolve(__dirname, '../src/second_loader_test.txt')
-            }
-          },
-          {
-            loader: "four-loader",
-            options: {}
-          }
-          
-        ]
-      },
-      {
         test: /\.png$/,
         use: {
+          // 自定义loader
           loader: 'three-loader',
           options: {
             limit: 1024
           }
         }
       },
-      {
-        test: /\.css$/,
-        use: {
-          loader: 'extract-loader'
-        }
-      }
+      // {
+      //   test: /\.css$/,
+      //   use: {
+      //     // 自定义loader
+      //     loader: 'extract-loader'
+      //   }
+      // }
     ]
   },
   plugins: [
