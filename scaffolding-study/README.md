@@ -1,5 +1,7 @@
 > 工作中用vue用的比较多，每次都是通过vue-cli生成项目。心中也一直就想去了解vue-cli是如何根据不同命令来生成不同的项目结构的，故而现在有空闲时间，就花了些时间仔细翻阅vue-cli文档之后，打算自己尝试实现一个脚手架
 
+> 感谢SCION脚手架作者，SCION的代码写的很简单明了，学习起来很容易
+
 ##### 概述
 
 通过vue-cli我们会明白：
@@ -13,9 +15,9 @@ vue init <template-name> <project-name>
 
 ##### 技术
 
-vue-cli文档写的很明白：
+vue-cli文档写的很明白，使用了以下：
 
-- `commander`: TJ大神开发的非常友好使用命令行的工具
+- `commander`: TJ大神开发的非常友好的使用nodejs命令行的工具。
 
 
 - `Inquirer.js`: 传统的命令行只能单行一次性地输入所有参数和选项，使用这个工具可以自动提供提示信息，并且分步接收用户的输入，`vue init`就是用它来实现一步一步输入参数的过程
@@ -23,11 +25,14 @@ vue-cli文档写的很明白：
 
 - `download-git-repo`: 远程下载git仓库
 
+- `metalsmith`: 通过`metalsmith`来生成项目
+
 
 ##### 项目介绍
 
 1. bin目录下的titanium文件，没有后缀名。并且文件顶部必须使用`#!/usr/bin/env node`这段代码，否则直接使用`titianium xxx`会报错
-2. 本地开发时可以使用`npm link`把`titianium`命令绑定到全局，可以实现直接以titianium作为命令开头,不用像以前使用`node .\commands\add.js`之类的命令了
+   
+2. 本地开发时可以使用`npm link`把`titianium`命令绑定到全局，可以实现直接以titianium作为命令开头,不用像以前使用`node .\commands\add.js`之类的命令了。想去掉 link 使用 `npm unlink`
 
 
 ---

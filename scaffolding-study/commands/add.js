@@ -1,8 +1,8 @@
 const { prompt } = require("inquirer");
 const { writeFile } = require("fs");
-const { listTable } = require(`${__dirname}/../utils`);
+const { listTable } = require(`../utils`);
 
-let tplList = require(`${__dirname}/../templates`);
+let tplList = require(`../templates`);
 
 const question = [
   {
@@ -42,9 +42,9 @@ module.exports = prompt(question).then(({name, place, branch}) => {
   tplList[name] = {}
   tplList[name]['owner/name'] = place
   tplList[name]['branch'] = branch
-  console.log(name, place, branch);
+  // console.log(name, place, branch);
 
-  writeFile(`${__dirname}/../templates.json`, JSON.stringify(tplList), 'utf-8', (err)=>{
+  writeFile(`${__dirname}/../templates.json`, JSON.stringify(tplList), (err)=>{
     if(err) { console.log(err) }
 
     listTable(tplList, 'New template has been added successfully!')

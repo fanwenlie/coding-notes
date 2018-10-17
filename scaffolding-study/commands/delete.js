@@ -1,8 +1,8 @@
 const { prompt } = require("inquirer");
 const { writeFile } = require("fs");
-const { listTable } = require(`${__dirname}/../utils`);
+const { listTable } = require(`../utils`);
 
-let tplList = require(`${__dirname}/../templates`);
+let tplList = require(`../templates`);
 
 const question = [
   {
