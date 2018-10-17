@@ -1,0 +1,24 @@
+{
+  "name": "scaffolding-study",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "titianium": "bin/titianium"
+  },
+  "keywords": [],
+  "author": "fwl",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "cli-table": "^0.3.1",
+    "commander": "^2.19.0",
+    "download-git-repo": "^1.1.0",
+    "handlebars": "^4.0.12",
+    "inquirer": "^6.2.0",
+    "metalsmith": "^2.3.0",
+    "ora": "^3.0.0"
+  }
+}
