@@ -15,7 +15,7 @@ vue init <template-name> <project-name>
 
 ##### 技术
 
-vue-cli文档写的很明白，使用了以下：
+vue-cli文档写的很明白，使用了以下package：
 
 - `commander`: TJ大神开发的非常友好的使用nodejs命令行的工具。
 

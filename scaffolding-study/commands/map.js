@@ -10,7 +10,7 @@ const question = [
     type: 'input',
     name: 'folderPath',
     message: 'Path of your Map folder:',
-    default: '/map',
+    default: '/project-tmpl',
     validate (val) {
       if (!val) {
         return 'Path is required!'
@@ -37,7 +37,7 @@ const myPlugin = (file) => {
 }
 
 const ignore = (fileMap, fileName, folderPath) => {
-  let ignoreArr = [resolve(currentFoler + folderPath + '/' + 'map.js')]
+  let ignoreArr = [resolve(currentFoler + folderPath + '/' + 'meta.js')]
   fileMap.forEach((file) => {
     if (file.name !== fileName) {
       ignoreArr.push(resolve(currentFoler + folderPath + '/' + file.name))
@@ -47,7 +47,7 @@ const ignore = (fileMap, fileName, folderPath) => {
 }
 
 module.exports = prompt(question).then(({ folderPath }) => {
-  const fileMap = require(resolve(currentFoler + folderPath + '/map.js'))
+  const fileMap = require(resolve(currentFoler + folderPath + '/meta.js'))
 
   for (let i = 0, len = fileMap.length; i < len; i++) {
     Metalsmith(__dirname)
@@ -56,6 +56,7 @@ module.exports = prompt(question).then(({ folderPath }) => {
       .use(myPlugin(fileMap[i]))
       .build((err, files) => {
         if (err) throw err
+        console.log('Build finished!');
       })
   }
 })
