@@ -20,5 +20,10 @@
     "inquirer": "^6.2.0",
     "metalsmith": "^2.3.0",
     "ora": "^3.0.0"
+  },
+  "devDependencies": {
+    "async": "^2.6.1",
+    "cli-prompt": "^0.6.0",
+    "consolidate": "^0.15.1"
   }
 }

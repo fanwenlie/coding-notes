@@ -34,7 +34,6 @@ vue-cli文档写的很明白，使用了以下package：
    
 2. 本地开发时可以使用`npm link`把`titianium`命令绑定到全局，可以实现直接以titianium作为命令开头,不用像以前使用`node .\commands\add.js`之类的命令了。想去掉 link 使用 `npm unlink`
 
-
 ---
 参考文档：
 
@@ -49,3 +48,5 @@ vue-cli文档写的很明白，使用了以下package：
 [commander](https://github.com/tj/commander.js/)
 
 [download-git-repo](https://github.com/flipxfx/download-git-repo)
+
+[metalsmith](https://github.com/segmentio/metalsmith)
