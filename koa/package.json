@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node src/app.js",
     "test": "mocha ./src/test",
-    "debug": "node --inspect src/app.js"
+    "debug": "node --inspect src/app.js",
+    "pm2": "pm2 start src/app.js"
   },
   "keywords": [],
   "author": "fwl",

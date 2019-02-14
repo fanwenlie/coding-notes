@@ -2,7 +2,9 @@
 .git
 .vscode
 dist/
-node-study/
+node/
+shell/
+
 
 # Logs
 logs
