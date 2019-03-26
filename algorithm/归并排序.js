@@ -24,10 +24,9 @@ function divide(p, r) {
  * @param {*} q 结束位置
  * @param {*} r 数组长度
  */
-function merge(A, p, q, r) {
-  const A1 = A.slice(p, q)
-  const A2 = A.slice(q, r)
-
+function merge(arr, p, q, r) {
+  const A1 = arr.slice(p, q)
+  const A2 = arr.slice(q, r)
   // 这是两个哨兵，减少if判断边界, 更不容易出错
   // POSITIVE_INFINITY 正无穷 不管哪个数字与之比较，都比它小
   // MAX_SAFE_INTEGER JS的最大安全数 (2^53 - 1)
@@ -36,33 +35,33 @@ function merge(A, p, q, r) {
 
   for (let i = p, j = 0, k = 0; i < r; i++) {
     if (A1[j] < A2[k]) {
-      A[i] =  A1[j++]
+      arr[i] =  A1[j++]
     } else {
-      A[i] =  A2[k++]
+      arr[i] =  A2[k++]
     }
   }
 
 
-  return A
+  return arr
 }
 
 /**
  * 归并排序
- * @param {*} A 
- * @param {*} p 
- * @param {*} r  
+ * @param {*} arr 需要排序的数组
+ * @param {*} p 需要排序的起始索引
+ * @param {*} r 需要排序的最后一个索引
  */
-function mergeSort(A, p, r) {
+function mergeSort(arr, p, r) {
   if (r - p === 1) {
     return
   }
   const q = divide(p, r)
-  mergeSort(A, p, q)
-  mergeSort(A, q, r)
+  mergeSort(arr, p, q)
+  mergeSort(arr, q, r)
 
-  merge(A, p, q, r)
+  merge(arr, p, q, r)
 
-  return A
+  return arr
 }
 
 /******* 验证 **********/
@@ -77,7 +76,9 @@ const { assert } = require('chai')
 //   'error 2'
 // )
 
-assert.deepEqual(
-  mergeSort([10, 3, 3, 100], 0, 4),
-  [3, 3, 10 ,100]
-)
+// assert.deepEqual(
+//   mergeSort([10, 3, 3, 100], 0, 4),
+//   [3, 3, 10 ,100]
+// )
+
+console.log( mergeSort([100, 4, 1, 11, 3, 10, 30, 12], 1, 5) )
