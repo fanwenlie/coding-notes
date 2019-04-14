@@ -18,14 +18,11 @@ function insertSort(arr) {
 		for (var j = newArr.length - 1; j >= 0; ) {
 			
 			if (curItem < newArr[j]) {
-				
 				j--; 
 				if (j === -1) {
-					
 					newArr.unshift(curItem);
 				}
 			} else {
-
 				newArr.splice(j + 1, 0, curItem); 
 				//break;
 				j = -1; 

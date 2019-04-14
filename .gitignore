@@ -1,6 +1,7 @@
 # other
 .git
 .vscode
+.idea
 dist/
 node/
 shell/
