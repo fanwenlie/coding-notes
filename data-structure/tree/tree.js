@@ -4,6 +4,8 @@
 */
 
 class Tree {
-  
+  constructor() {
+    
+  }
 
 } 

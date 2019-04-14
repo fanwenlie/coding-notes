@@ -44,4 +44,3 @@ class Queue {
     this._arr = []
   }
 }
-
