@@ -13,7 +13,7 @@ class ListNode {
 /** 
  * 单向链表
 */
-class List {
+class SinglyList {
   constructor() {
     this.head = null
   }
@@ -22,38 +22,67 @@ class List {
     return new ListNode(key)
   }
 
+  /**
+   * TODO: 目前只实现插入到链表末尾
+   * @param {Object} node 
+   */
   insert(node) {
-    node.next = this.head
-    if (this.head) {
-      this.head.prev = node
+    node.next = null
+    // 头指针指向第一个插入的node
+    if (!this.head) {
+      this.head = node
+      return;
     }
-    this.head = node
+    
+    const lastNode = this.findLastNode()
+    lastNode.next = node
   }
 
   search(key) {
     let node = this.head
-    while (node !== null && node.key !== key) {
+    while (node && node.key !== key) {
       node = node.next
     }
     return node
   }
 
   delete(node) {
-    const { prev, next } = node
-    delete node.prev
+    const { next } = node
     delete node.next
 
-    if (node === this.head) {
+    const prevNode = this.findPrevNode(node)
+    // 代表node是第一个元素
+    if (prevNode === null) {
       this.head = next
+      return;
     }
+    prevNode.next = next
+  }
 
-    if (prev) {
-      prev.next = next
+  /**
+   * 获取链表的最后一个node
+   */
+  findLastNode() {
+    let node = this.head
+    while (node && node.next) {
+      node = node.next
     }
-    if (next) {
-      next.prev = prev
+    return node
+  }
+  /**
+   * 获取指定node的上一个node
+   * @param {Object} node 
+   * 
+   */
+  findPrevNode(node) {
+    let tempNode = this.head
+    if (this.head === node) { return null }
+
+    while (tempNode && tempNode.next !== node) {
+      tempNode = tempNode.next
     }
+    return tempNode
   }
 }
 
-module.exports = List
+module.exports = SinglyList

@@ -17,6 +17,7 @@ class ListNode {
 */
 class List {
   constructor() {
+    // 头指针
     this.head = null
   }
 
@@ -30,6 +31,7 @@ class List {
     if (this.head) {
       this.head.prev = node
     }
+    // head指针指向最后插入的node
     this.head = node
   }
 
