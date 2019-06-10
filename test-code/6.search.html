@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>DFS & BFS</title>
+</head>
+<body>
+  <div id="root">
+    <ul>
+      <li>
+        <a></a>
+      </li>
+      <li></li>
+      <li></li>
+    </ul>
+
+    <p>
+      <span></span>
+    </p>
+
+    <i></i>
+  </div>
+  <script>
+    const root = document.getElementById('root')
+
+    // 深度优先
+    function dfs(node) {
+      let stack = [node]
+
+      while (stack.length) {
+        const item = stack.pop()
+        console.log( item.tagName )
+        for (let i = item.children.length - 1; i >= 0; i--) {
+          stack.push(item.children[i])
+        }
+      }
+    }
+
+    // console.log( dfs(root) )
+
+    // 广度优先
+    function bfs(node) {
+      let queue = [node]
+
+      while (queue.length) {
+        const item = queue.pop()
+        console.log( item.tagName )
+        for (let i = item.children.length - 1; i >= 0; i--) {
+          queue.unshift(item.children[i])
+        }
+      }
+    }
+
+    console.log( bfs(root) )
+  
+  </script>
+</body>
+</html>

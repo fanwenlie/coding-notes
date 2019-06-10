@@ -26,4 +26,6 @@ function quickSrot(arr) {
 
 	return quickSrot(left).concat(middleItem, quickSrot(right));
 }
+
+
 console.log(quickSrot([5, 4, 2, 1, 3, 5, 6, 7, 8, 9, 0]));
