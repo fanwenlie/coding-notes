@@ -1,0 +1,6 @@
+apps:
+  - script   : src/app.js
+    name     : worker-app
+    instances: 2
+    watch    : true
+    exec_mode: cluster
