@@ -28,32 +28,34 @@
     // 深度优先
     function dfs(node) {
       let stack = [node]
-
+      const arr = [];
       while (stack.length) {
         const item = stack.pop()
-        console.log( item.tagName )
+        arr.push(item.tagName)
         for (let i = item.children.length - 1; i >= 0; i--) {
           stack.push(item.children[i])
         }
       }
+      return arr
     }
 
-    // console.log( dfs(root) )
+    console.log( dfs(root).join() )
 
     // 广度优先
     function bfs(node) {
       let queue = [node]
-
+      const arr = []
       while (queue.length) {
         const item = queue.pop()
-        console.log( item.tagName )
+        arr.push(item.tagName);
         for (let i = item.children.length - 1; i >= 0; i--) {
           queue.unshift(item.children[i])
         }
       }
+      return arr
     }
 
-    console.log( bfs(root) )
+    console.log( bfs(root).join() )
   
   </script>
 </body>
