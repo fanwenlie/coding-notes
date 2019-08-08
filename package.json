@@ -21,6 +21,8 @@
   "homepage": "https://github.com/fanwenlie/coding-notes#readme",
   "dependencies": {
     "chai": "^4.2.0",
-    "mocha": "^6.0.2"
+    "global": "^4.4.0",
+    "mocha": "^6.0.2",
+    "promises-aplus-tests": "^2.1.2"
   }
 }

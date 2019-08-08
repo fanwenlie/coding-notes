@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script src="10.promise-self.js"></script>
+  <script>
+    // setTimeout(function(){
+    //   console.log(1)
+    // }, 0)
+    // new Promise(function(resolve){
+    //   console.log(2);
+    //   for(var i = 0; i < 11; i++){
+    //       i== 10 && resolve(4)
+    //   }
+    //   console.log(3);
+    // }).then(function(val){
+    //   console.log(val);
+    // })
+    // console.log(5);
+    
+
+    // 不会报错？？？？
+    const p1 = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        console.log(p1)
+        resolve(p1)
+      }, 1000);
+    })
+    
+    p1.then((val) => {
+      console.log(val)
+      return val
+    }).then(val => console.log('then', val)).catch(val => console.log('catch', val))
+  </script>
+</body>
+</html>
