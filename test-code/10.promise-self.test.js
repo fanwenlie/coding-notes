@@ -28,3 +28,10 @@ const Promise = require('./10.promise-self')
 // })
 // console.log(5);
 // 输出2，3，5，4，1。 与浏览器和nodejs保持一致
+
+// 测试finally
+new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve(1)
+  }, 500);
+}).then(val => console.log(val)).finally(()=>console.log('finally'))

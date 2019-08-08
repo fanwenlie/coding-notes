@@ -117,6 +117,9 @@ const asyncFn = (function () {
 
 class Promise {
 	constructor(executor) {
+		if (typeof executor !== 'function') {
+			throw new TypeError('executor must be a function');
+		}
 		const self = this;
 
 		// Promise初始状态
@@ -246,6 +249,28 @@ class Promise {
 		return this.then(null, onRejected);
 	}
 
+	finally(callback) {
+		if (typeof callback !== 'function') {
+			return this;
+		}
+		
+		var p = this.constructor;
+		return this.then(resolve, reject);
+	
+		function resolve(value) {
+			function yes () {
+				return value;
+			}
+			return p.resolve(callback()).then(yes);
+		}
+		function reject(reason) {
+			function no () {
+				throw reason;
+			}
+			return p.resolve(callback()).then(no);
+		}
+	}
+
 	static resolve(value) {
 		return new Promise(resolve => {
 			resolve(value)
@@ -287,7 +312,7 @@ class Promise {
 			})
 		})
 	}
-	
+
 	/**
 	 * 暴露出Promise.deferred方法
 	 * 供测试脚本[promises-aplus-tests]测试

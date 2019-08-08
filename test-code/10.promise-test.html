@@ -25,17 +25,23 @@
     
 
     // 不会报错？？？？
-    const p1 = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        console.log(p1)
-        resolve(p1)
-      }, 1000);
-    })
+    // const p1 = new Promise((resolve, reject) => {
+    //   setTimeout(() => {
+    //     console.log(p1)
+    //     resolve(p1)
+    //   }, 1000);
+    // })
     
-    p1.then((val) => {
-      console.log(val)
-      return val
-    }).then(val => console.log('then', val)).catch(val => console.log('catch', val))
+    // p1.then((val) => {
+    //   console.log(val)
+    //   return val
+    // }).then(val => console.log('then', val)).catch(val => console.log('catch', val))
+
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        reject(1)
+      }, 500);
+    }).then(val => console.log(val)).finally(()=>console.log('finally'))
   </script>
 </body>
 </html>
