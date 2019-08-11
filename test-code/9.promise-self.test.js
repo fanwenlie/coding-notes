@@ -1,4 +1,4 @@
-const Promise = require('./10.promise-self')
+const Promise = requir('./9.promise-self')
 
 
 // Promise.all([Promise.resolve(1), Promise.reject(2)])

@@ -16,8 +16,6 @@ class BinaryTreeNode {
     // 卫星数据
     this.value = null
   }
-
-  
 }
 
 class Tree {
