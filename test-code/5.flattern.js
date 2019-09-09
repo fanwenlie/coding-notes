@@ -28,3 +28,5 @@ function flat(arr) {
 }
 
 console.log( flat( [1, 2, 3, [1, 2, 3, [444, 6]] ] ) )
+
+

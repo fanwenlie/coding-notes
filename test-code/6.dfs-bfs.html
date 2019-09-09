@@ -39,7 +39,7 @@
       return arr
     }
 
-    console.log( dfs(root).join() )
+    console.log('dfs', dfs(root).join())
 
     // 广度优先
     function bfs(node) {
@@ -55,7 +55,16 @@
       return arr
     }
 
-    console.log( bfs(root).join() )
+    console.log('bfs', bfs(root).join())
+
+    function getDepth(node) {
+      let top = [node]
+      let depth = 1
+      
+      return depth
+    }
+
+    console.log('depth', getDepth(node))
   
   </script>
 </body>
