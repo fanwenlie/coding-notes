@@ -10,8 +10,8 @@
  * 简单模拟async/await函数[阮一峰版本]
  */
 
- /**
-  * @returns {Promise}
+/**
+  * @return {Promise}
   */
 function _co(genFn) {
   return new Promise((resolve, reject) => {
