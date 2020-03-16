@@ -31,7 +31,7 @@
       const root = document.getElementById('root')
       console.log('tree', root)
 
-      // 深度优先
+      // 深度优先: 采用栈
       function dfs(node) {
         let stack = [node]
         const arr = []
@@ -47,15 +47,15 @@
 
       console.log('dfs', dfs(root).join())
 
-      // 广度优先
+      // 广度优先：采用队列
       function bfs(node) {
         let queue = [node]
         const arr = []
         while (queue.length) {
-          const item = queue.pop()
+          const item = queue.shift()
           arr.push(item.tagName)
           for (let i = 0, len = item.children.length; i < len; i++) {
-            queue.unshift(item.children[i])
+            queue.push(item.children[i])
           }
         }
         return arr
