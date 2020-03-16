@@ -31,38 +31,25 @@ function fibB(n, a = 1, b = 1) {
 console.log(fibB(1000));
 console.timeEnd('尾递归');
 
-console.time('递归改成for循环');
 /**
  * 动态规划
  */
+console.time('递归改成for循环');
 function fibFor(n) {
 	let a = 1;
 	let b = 1;
 
 	// 普通循环
-	// let res = 0;
-	// for (let i = 3; i <= n; i++) {
-	// 	res = a + b;
-	// 	a = b;
-	// 	b = res;
-	// }
-
-	// // if (res > Number.MAX_SAFE_INTEGER) {
-	// //   throw new Error(`斐波那契数列第${n}项：已经超过JS最大安全整数`)
-	// // }
-
-	// return res;
-
-	// 优化循环
 	let res = 0;
-	while (n >= 3) {
-		// [a, b] = [b, a + b]
+	for (let i = 3; i <= n; i++) {
 		res = a + b;
 		a = b;
 		b = res;
-
-		n--;
 	}
+
+	// if (res > Number.MAX_SAFE_INTEGER) {
+	//   throw new Error(`斐波那契数列第${n}项：已经超过JS最大安全整数`)
+	// }
 
 	return res;
 }
@@ -84,8 +71,6 @@ function fibWhile(n) {
 
 		n--;
 	}
-
-	// return b
 	return res;
 }
 console.log(fibWhile(1000));
