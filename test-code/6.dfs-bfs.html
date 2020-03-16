@@ -29,6 +29,7 @@
 
     <script>
       const root = document.getElementById('root')
+      console.log('tree', root)
 
       // 深度优先
       function dfs(node) {
@@ -63,7 +64,7 @@
       console.log('bfs', bfs(root).join())
 
       // 获取树的深度：递归实现，迭代如何实现呢？
-      function getDepth(node) {
+      function getDepthByRecurve(node) {
         if (node.children.length === 0) {
           return 1
         }
@@ -73,7 +74,32 @@
         return 1 + Math.max(...deeps)
       }
 
-      console.log('depth', root, getDepth(root))
+      function getDepth(tree) {
+        if (!tree) {
+          return null
+        }
+        
+        const result = []
+        const nodes = []
+        // 节点深度从父节点开始算起
+        nodes.push({ node: tree, depth: 1 })
+        result.push({ node: tree, depth: 1 })
+
+        while (nodes.length > 0) {
+          const { node, depth } = nodes.shift()
+          if (node.children.length > 0) {
+            [...node.children].forEach(n => {
+              nodes.push({ node: n, depth: depth + 1 })
+              result.push({ node: n, depth: depth + 1 })
+            })
+          }
+        }
+
+        return Math.max(...result.map(n => n.depth))
+      }
+
+      // console.log('depth', getDepthByRecurve(root))
+      console.log('depth', getDepth(root))
     </script>
   </body>
 </html>
