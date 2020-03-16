@@ -1,88 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>DFS & BFS</title>
-</head>
-<body>
-  <div id="root">
-    <ul>
-      <li>
-        <a></a>
-      </li>
-      <li></li>
-      <li></li>
-    </ul>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>DFS & BFS</title>
+  </head>
+  <body>
+    <div id="root">
+      <ul>
+        <li>
+          <a></a>
+        </li>
+        <li></li>
+        <li></li>
+      </ul>
 
-    <p>
-      <span>
-        <b>
-          <sub></sub>
-        </b>
-      </span>
-    </p>
+      <p>
+        <span>
+          <b>
+            <sub></sub>
+          </b>
+        </span>
+      </p>
 
-    <i><strong></strong></i>
-  </div>
+      <i><strong></strong></i>
+    </div>
 
-  <script>
-    const root = document.getElementById('root')
+    <script>
+      const root = document.getElementById('root')
 
-    // 深度优先
-    function dfs(node) {
-      let stack = [node]
-      const arr = [];
-      while (stack.length) {
-        const item = stack.pop()
-        arr.push(item.tagName)
-        for (let i = item.children.length - 1; i >= 0; i--) {
-          stack.push(item.children[i])
+      // 深度优先
+      function dfs(node) {
+        let stack = [node]
+        const arr = []
+        while (stack.length) {
+          const item = stack.pop()
+          arr.push(item.tagName)
+          for (let i = item.children.length - 1; i >= 0; i--) {
+            stack.push(item.children[i])
+          }
         }
+        return arr
       }
-      return arr
-    }
 
-    console.log('dfs', dfs(root).join())
+      console.log('dfs', dfs(root).join())
 
-
-
-    // 广度优先
-    function bfs(node) {
-      let queue = [node]
-      const arr = []
-      while (queue.length) {
-        const item = queue.pop()
-        arr.push(item.tagName);
-        for (let i = 0, len = item.children.length; i < len; i++) {
-          queue.unshift(item.children[i])
+      // 广度优先
+      function bfs(node) {
+        let queue = [node]
+        const arr = []
+        while (queue.length) {
+          const item = queue.pop()
+          arr.push(item.tagName)
+          for (let i = 0, len = item.children.length; i < len; i++) {
+            queue.unshift(item.children[i])
+          }
         }
+        return arr
       }
-      return arr
-    }
 
-    console.log('bfs', bfs(root).join())
-    
+      console.log('bfs', bfs(root).join())
 
+      // 获取树的深度：递归实现，迭代如何实现呢？
+      function getDepth(node) {
+        if (node.children.length === 0) {
+          return 1
+        }
 
-    // 获取树的深度
-    function getDepth(node) {
-      // 递归函数 	
-      function next(node) {
-        // 基准条件 
-        if (node.children.length === 0) { return 1 }
-        
-        // 求子节点们的长度 并取最大值 			
-        var deeps = [...node.children].map(next)
+        // 求子节点们的长度 并取最大值
+        var deeps = [...node.children].map(getDepth)
         return 1 + Math.max(...deeps)
       }
 
-      return next(node)
-    }
-
-    console.log('depth', root, getDepth(root))
-  
-  </script>
-</body>
+      console.log('depth', root, getDepth(root))
+    </script>
+  </body>
 </html>
