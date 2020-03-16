@@ -17,11 +17,16 @@
     </ul>
 
     <p>
-      <span></span>
+      <span>
+        <b>
+          <sub></sub>
+        </b>
+      </span>
     </p>
 
-    <i></i>
+    <i><strong></strong></i>
   </div>
+
   <script>
     const root = document.getElementById('root')
 
@@ -41,6 +46,8 @@
 
     console.log('dfs', dfs(root).join())
 
+
+
     // 广度优先
     function bfs(node) {
       let queue = [node]
@@ -48,7 +55,7 @@
       while (queue.length) {
         const item = queue.pop()
         arr.push(item.tagName);
-        for (let i = item.children.length - 1; i >= 0; i--) {
+        for (let i = 0, len = item.children.length; i < len; i++) {
           queue.unshift(item.children[i])
         }
       }
@@ -56,15 +63,25 @@
     }
 
     console.log('bfs', bfs(root).join())
+    
 
+
+    // 获取树的深度
     function getDepth(node) {
-      let top = [node]
-      let depth = 1
-      
-      return depth
+      // 递归函数 	
+      function next(node) {
+        // 基准条件 
+        if (node.children.length === 0) { return 1 }
+        
+        // 求子节点们的长度 并取最大值 			
+        var deeps = [...node.children].map(next)
+        return 1 + Math.max(...deeps)
+      }
+
+      return next(node)
     }
 
-    console.log('depth', getDepth(node))
+    console.log('depth', root, getDepth(root))
   
   </script>
 </body>
