@@ -5,7 +5,7 @@
 dist/
 node/
 shell/
-
+.DS_Store
 
 # Logs
 logs
