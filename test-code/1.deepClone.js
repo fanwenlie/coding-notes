@@ -57,6 +57,8 @@ function cloneReg(target) {
  * 如果使用new Function('return ' + func.toString())是有缺陷的
  * 比如 const obj = { fun() { return 'ha' }, func: function() { return 'ha' }, f: () => { console.log('ha') } }
  * 拷贝fun的时候会报错, func、f正常。
+ * 
+ * TIPS:如果不考虑this的问题，是不是可以考虑用bind函数，bind会返回一个原函数的拷贝
  * @param {Function} func
  */
 function cloneFunction(func) {
