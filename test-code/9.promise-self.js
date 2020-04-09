@@ -249,7 +249,7 @@ class Promise {
 		return this.then(null, onRejected);
 	}
 	/**
-	 * 之所以P.resolve(callback()).then(yes)
+	 * 之所以resolve(callback())
 	 * 是因为callback可能是异步操作，返回promise之后再执行
 	 * finally的特性：不管状态是fulfilled还是rejected，都要调用callback()
 	 * @param {function} callback 
@@ -258,7 +258,7 @@ class Promise {
 		if (typeof callback !== 'function') {
 			return this;
 		}
-		
+		// 用this.constructor更加准确，如果直接用Promise，如果我是自定义的MyPromise, 用Promise肯定不准确
 		var P = this.constructor;
 		return this.then(resolve, reject);
 	
