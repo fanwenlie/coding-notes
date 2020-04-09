@@ -248,26 +248,31 @@ class Promise {
 	catch(onRejected) {
 		return this.then(null, onRejected);
 	}
-
+	/**
+	 * 之所以P.resolve(callback()).then(yes)
+	 * 是因为callback可能是异步操作，返回promise之后再执行
+	 * finally的特性：不管状态是fulfilled还是rejected，都要调用callback()
+	 * @param {function} callback 
+	 */
 	finally(callback) {
 		if (typeof callback !== 'function') {
 			return this;
 		}
 		
-		var p = this.constructor;
+		var P = this.constructor;
 		return this.then(resolve, reject);
 	
 		function resolve(value) {
 			function yes () {
 				return value;
 			}
-			return p.resolve(callback()).then(yes);
+			return P.resolve(callback()).then(yes);
 		}
 		function reject(reason) {
 			function no () {
 				throw reason;
 			}
-			return p.resolve(callback()).then(no);
+			return P.resolve(callback()).then(no);
 		}
 	}
 
