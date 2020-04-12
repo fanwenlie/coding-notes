@@ -14,7 +14,7 @@ class BinaryTreeNode {
     // 键值
     this.key = key
     // 卫星数据
-    this.value = null
+    this.value = value
   }
 }
 
