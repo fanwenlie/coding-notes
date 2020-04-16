@@ -40,4 +40,4 @@ function* testG(name) {
 
 const promise = co(testG, 'test')
 
-promise.then(console.log) 
+promise.then(console.log)
