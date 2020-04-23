@@ -26,15 +26,15 @@ function co(generatorFn) {
   })
 }
 
-const getData = () => new Promise(resolve => setTimeout(() => resolve("data"), 1000))
+const getData = (result) => new Promise(resolve => setTimeout(() => resolve(result), 1000))
 
 function* testG(name) {
   console.log(name)
   // await被编译成了yield
-  const data = yield getData()
-  console.log('data: ', data);
-  const data2 = yield getData()
-  console.log('data2: ', data2);
+  const data = yield getData(`${name}1`)
+  console.log('data: ', data)
+  const data2 = yield getData(`${name}2`)
+  console.log('data2: ', data2)
   return 'success'
 }
 
