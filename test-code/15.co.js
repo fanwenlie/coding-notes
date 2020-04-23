@@ -38,6 +38,11 @@ function* testG(name) {
   return 'success'
 }
 
+// 自动执行
 const promise = co(testG, 'test')
-
 promise.then(console.log)
+
+// 手动执行
+// const g = testG('TEST')
+// const { value } = g.next()
+// value.then(console.log)
