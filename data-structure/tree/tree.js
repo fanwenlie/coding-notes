@@ -31,7 +31,7 @@ class Tree {
     while (tail) {
       p = tail
 
-      if (tail && key < tail.key) {
+      if (key < tail.key) {
         tail = tail.left
       } else {
         tail = tail.right
@@ -57,12 +57,36 @@ class Tree {
     return this.__transverse(this.root)
   }
 
-  // 中序遍历
+  // 用generator实现中序遍历
   *__transverse (node) {
     if (!node) { return }
     yield* this.__transverse(node.left)
     yield node
     yield* this.__transverse(node.right)
+  }
+
+  // 先序遍历
+  preOrder(node) {
+    if (!node) { return }
+    console.log(node.key)
+    this.preOrder(node.left)
+    this.preOrder(node.right)
+  }
+
+  // 中序遍历
+  inOrder(node) {
+    if (!node) { return }
+    this.inOrder(node.left)
+    console.log(node.key)
+    this.inOrder(node.right)
+  }
+
+  // 后序遍历
+  inOrder(node) {
+    if (!node) { return }
+    this.inOrder(node.left)
+    this.inOrder(node.right)
+    console.log(node.key)
   }
 
 } 
