@@ -3,34 +3,36 @@
  * 
  * 设计一个支持 push ，pop ，top 操作，并能在常数时间O(1)内检索到最小元素的栈。
  * 
- * push(x) —— 将元素 x 推入栈中。
- * pop() —— 删除栈顶的元素。
- * top() —— 获取栈顶元素。
- * getMin() —— 检索栈中的最小元素。
+ * push(x) —— 将元素 x 推入栈中。 O(n)
+ * pop() —— 删除栈顶的元素。 O(n)
+ * top() —— 获取栈顶元素。 O(1)
+ * getMin() —— 检索栈中的最小元素。 O(1)
  */
 
 class MinStack {
   constructor() {
     this.data = []
-    this.min = undefined
+    this.mins = []
   }
 
   push(item) {
     this.data.push(item)
-    const { min } = this
-    if (min === undefined) {
-      this.min = item
+    if (this.mins.length === 0) {
+      this.mins.push(item)
       return
     }
-    if (item < min) {
-      this.min = item
+    const last = this.mins[this.mins.length - 1]
+    if (item <= last) {
+      this.mins.push(item)
     }
   }
 
   pop() {
     const result = this.data.pop()
-
-    this.min = this.data.length === 0 ? undefined : Math.min(...this.data)
+    const last = this.mins[this.mins.length - 1]
+    if (last === result) {
+      this.mins.pop()
+    }
 
     return result
   }
@@ -40,7 +42,7 @@ class MinStack {
   }
 
   getMin() {
-    return this.min
+    return this.mins[this.mins.length - 1]
   }
 }
 

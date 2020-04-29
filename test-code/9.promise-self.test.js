@@ -1,4 +1,4 @@
-const Promise = requir('./9.promise-self')
+const Promise = require('./9.promise-self')
 
 
 // Promise.all([Promise.resolve(1), Promise.reject(2)])
@@ -30,8 +30,19 @@ const Promise = requir('./9.promise-self')
 // 输出2，3，5，4，1。 与浏览器和nodejs保持一致
 
 // 测试finally
-new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve(1)
-  }, 500);
-}).then(val => console.log(val)).finally(()=>console.log('finally'))
+// new Promise((resolve, reject) => {
+//   setTimeout(() => {
+//     resolve(1)
+//   }, 500);
+// }).then(val => console.log(val)).finally(()=>console.log('finally'))
+
+Promise.resolve()
+  .then(() => {
+    console.log(1)
+    Promise.resolve()
+      .then(() => console.log(3))
+      .then(() => console.log(4))
+  })
+  .then(() => {
+    console.log(2)
+  })
