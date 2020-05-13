@@ -29,10 +29,16 @@ class Event {
   }
   
 	off(type, callback) {
-		if (!this._event[type]) {
+		const cbs = this._event[type]
+		if (!cbs) {
 			return;
 		}
-		this._event[type].filter(cb => {
+		if (!callback) {
+			this._event[type] = []
+			return
+		}
+
+		this._event[type] = cbs.filter(cb => {
 			// cb.fn !== callback 用来识别once方法中的off
 			return cb !== callback || cb.fn !== callback;
 		});
