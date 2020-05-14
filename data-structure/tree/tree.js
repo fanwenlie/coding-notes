@@ -65,12 +65,37 @@ class Tree {
     yield* this.__transverse(node.right)
   }
 
-  // 先序遍历
-  preOrder(node) {
-    if (!node) { return }
-    console.log(node.key)
-    this.preOrder(node.left)
-    this.preOrder(node.right)
+  // 先序遍历-递归
+  preOrder() {    
+    const result = []
+    function pre(node) {
+      if (node) {
+        result.push(node.key)
+        pre(node.left)
+        pre(node.right)
+      }
+    }
+    pre(this.root)
+
+    return result
+  }
+
+  // 先序遍历-用迭代的方式
+  preOrderLoop() {
+    const { root } = this
+    const result = []
+    const stack = [root]
+    while (stack.length) {
+      const node = stack.pop()
+      result.push(node.key)
+      if (node.right) {
+        stack.push(node.right)
+      }
+      if (node.left) {
+        stack.push(node.left)
+      }
+    }
+    return result
   }
 
   // 中序遍历
@@ -88,7 +113,6 @@ class Tree {
     this.inOrder(node.right)
     console.log(node.key)
   }
-
 } 
 
 module.exports = Tree
