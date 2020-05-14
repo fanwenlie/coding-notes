@@ -66,7 +66,7 @@ class Tree {
   }
 
   // 先序遍历-递归
-  preOrder() {    
+  preOrder() {
     const result = []
     function pre(node) {
       if (node) {
@@ -99,19 +99,35 @@ class Tree {
   }
 
   // 中序遍历
-  inOrder(node) {
-    if (!node) { return }
-    this.inOrder(node.left)
-    console.log(node.key)
-    this.inOrder(node.right)
+  inOrder() {
+    const result = []
+    
+    function order(node) {
+      if (node) {
+        order(node.left)
+        result.push(node.key)
+        order(node.right)
+      }
+    }
+    order(this.root)
+
+    return result
   }
 
   // 后序遍历
-  inOrder(node) {
-    if (!node) { return }
-    this.inOrder(node.left)
-    this.inOrder(node.right)
-    console.log(node.key)
+  postOder() {
+    const result = []
+    
+    function order(node) {
+      if (node) {
+        order(node.left)
+        order(node.right)
+        result.push(node.key)
+      }
+    }
+    order(this.root)
+
+    return result
   }
 } 
 
