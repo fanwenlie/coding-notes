@@ -12,7 +12,7 @@ const program = require("commander");
 // 定义当前版本
 program.version(require("../package").version);
 
-// 可以使用 titianium add 这种命令
+// 可以使用 titanium add 这种命令
 program.usage("<command>");
 
 program

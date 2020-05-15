@@ -30,9 +30,24 @@ vue-cli文档写的很明白，使用了以下package：
 
 ##### 项目介绍
 
-1. bin目录下的titanium文件，没有后缀名。并且文件顶部必须使用`#!/usr/bin/env node`这段代码，否则直接使用`titianium xxx`会报错
+1. bin目录下的titanium文件，没有后缀名。并且文件顶部必须使用`#!/usr/bin/env node`这段代码，否则直接使用`titanium xxx`会报错
    
-2. 本地开发时可以使用`npm link`把`titianium`命令绑定到全局，可以实现直接以titianium作为命令开头,不用像以前使用`node .\commands\add.js`之类的命令了。想去掉 link 使用 `npm unlink`
+2. 本地开发时可以使用`npm link`把`titanium`命令绑定到全局，可以实现直接以titanium作为命令开头,不用像以前使用`node .\commands\add.js`之类的命令了。想去掉 link 使用 `npm unlink`
+
+##### 使用
+
+1. 先绑定命令到全局
+```
+sudo npm link
+
+// unlink
+sudo npm unlink
+```
+2. 查看命令详情
+
+```
+titanium
+```
 
 ---
 参考文档：
