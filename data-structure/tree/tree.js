@@ -129,6 +129,29 @@ class Tree {
 
     return result
   }
+
+  // 最大深度
+  maxDepth() {
+    const nodes = []
+    const result = []
+
+    nodes.push({ node: this.root, depth: 1 })
+    result.push(1)
+
+    while(nodes.length) {
+      const { node, depth } = nodes.pop()
+      if (node.left) {
+        nodes.push({ node: node.left, depth: depth + 1  })
+        result.push(depth + 1)
+      }
+      if (node.right) {
+        nodes.push({ node: node.right, depth: depth + 1  })
+        result.push(depth + 1)
+      }
+    }
+
+    return Math.max(...result)
+  }
 } 
 
 module.exports = Tree
