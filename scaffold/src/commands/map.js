@@ -87,7 +87,7 @@ function template(files, metalsmith, done){
 module.exports = prompt(question).then((...args) => {
   // { name, repository, description, license}
   var metalsmith = Metalsmith(__dirname)
-    .source('../project-tmpl')
+    .source('../../project-tmpl')
     .destination('../build')
     .clean(true)
     .use(ask(args[0]))

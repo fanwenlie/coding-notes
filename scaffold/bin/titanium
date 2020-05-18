@@ -1,62 +1,64 @@
 #!/usr/bin/env node
 
 // 定义脚手架的文件路径
-process.env.NODE_PATH = __dirname + "/../node_modules/";
+process.env.NODE_PATH = __dirname + '/../../node_modules/'
 
-const { resolve } = require("path");
+const { resolve } = require('path')
 
-const res = command => resolve(__dirname, "../commands/", command);
+const resolveFile = (command) => resolve(__dirname, '../src/commands/', command)
 
-const program = require("commander");
+const program = require('commander')
 
 // 定义当前版本
-program.version(require("../package").version);
+program.version(require('../package').version)
 
 // 可以使用 titanium add 这种命令
-program.usage("<command>");
+program.usage('<command>')
 
 program
-	.command("add")
-	.description("add a new template")
-	.alias("a")
-	.action(() => {
-		require(res("add"));
-	});
+  .command('add')
+  .description('add a new template')
+  .alias('a')
+  .action(() => {
+    require(resolveFile('add'))
+  })
 
 program
-	.command("list")
-	.description("List all the templates")
-	.alias("l")
-	.action(() => {
-		require(res("list"));
-	});
+  .command('list')
+  .description('List all the templates')
+  .alias('l')
+  .action(() => {
+    require(resolveFile('list'))
+  })
 
 program
-	.command("init")
-	.description("Generate a new project")
-	.alias("i")
-	.action(() => {
-		require(res("init"));
-	});
+  .command('init')
+  .description('Generate a new project')
+  .alias('i')
+  .action(() => {
+    require(resolveFile('init'))
+  })
 
 program
-	.command("delete")
-	.description("Delete a template")
-	.alias("d")
-	.action(() => {
-		require(res("delete"));
-	});
+  .command('delete')
+  .description('Delete a template')
+  .alias('d')
+  .action(() => {
+    require(resolveFile('delete'))
+  })
 
 program
-	.command("map")
-	.description("Place files to diffirent position")
-	.alias("m")
-	.action(() => {
-		require(res("map"));
-	});
+  .command('map')
+  .description('Place files to diffirent position')
+  .alias('m')
+  .action(() => {
+    require(resolveFile('map'))
+  })
 
+// process.argv就是用户在命令行中传入的参数
 program.parse(process.argv)
 
-if(!program.args.length) {
+// 只输入titanium命令，不输入参数，会显示help信息
+if (!program.args.length) {
   program.help()
 }
