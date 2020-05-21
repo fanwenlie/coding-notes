@@ -24,7 +24,7 @@ describe('测试单向链表', () => {
     const tempNode = list.search(0)
     list.delete(tempNode)
 
-    // console.log(list)
+    console.log(list)
 
     assert.equal(list.search(0), undefined)
   })
