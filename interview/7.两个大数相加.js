@@ -64,9 +64,9 @@ function sumFloat(a, b) {
     const prev = totalDecimal.substring(0, len)
     const next = totalDecimal.substring(len)
     return `${sum(totalInt, prev)}.${next}`
-  } else {
-    return `${totalInt}.${totalDecimal}`
   }
+  
+  return `${totalInt}.${totalDecimal}`
 }
 
 console.log(sumFloat('12345677889', '987645342'))
