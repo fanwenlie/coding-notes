@@ -6,6 +6,7 @@ dist/
 node/
 shell/
 .DS_Store
+test-code-local
 
 # Logs
 logs
