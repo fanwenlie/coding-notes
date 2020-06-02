@@ -43,13 +43,14 @@ const question = [
   },
 ]
 
-module.exports = prompt(question).then(({ name, place, project }) => {
+module.exports = prompt(question).then(({ name, place: localPath, project: localProject }) => {
   const gitPlace = tplList[name]['owner/name']
   const gitBranch = tplList[name]['branch']
+  
   const spinner = ora('Downloading template...')
   spinner.start()
 
-  download(`${gitPlace}#${gitBranch}`, `${place}/${project}`, (err) => {
+  download(`direct:https://github.com/${gitPlace}.git#${gitBranch}`, `${localPath}/${localProject}`, { clone: true }, (err) => {
     if (err) {
       console.log(chalk.red(err))
       process.exit()
