@@ -46,14 +46,14 @@
  */
 function rotateMatrix(matrix) {
   matrix.reverse()
-  /* 
-  */
-  for (let i = 0, outerLen = matrix.length; i < outerLen; i++) {
+  const len = matrix.length
+  for (let i = 0; i < len; i++) {
     // 这里i + 1, 是因为已经交换过的不需要再交换了
-    for (let j = i + 1, innerLen = matrix[i].length; j < innerLen; j++) {
-      const temp = matrix[i][j]
-      matrix[i][j] = matrix[j][i]
-      matrix[j][i] = temp
+    for (let j = i + 1; j < len; j++) {
+      // const temp = matrix[i][j]
+      // matrix[i][j] = matrix[j][i]
+      // matrix[j][i] = temp
+      [matrix[j][i], matrix[i][j]] = [matrix[i][j], matrix[j][i]]
     }
   }
   return matrix
