@@ -15,7 +15,7 @@ function happyDispel(str) {
   let repeatCount = 1
   let repeatStartIdx = -1
   let repeatEndIdx = -1
-  let LoopIdx = 0
+  let loopIdx = 0
 
   function remove(startIdx, endIdx) {
     if (startIdx === -1 || endIdx === -1) { return }
@@ -25,12 +25,12 @@ function happyDispel(str) {
     repeatCount = 1
     repeatStartIdx = -1
     repeatEndIdx = -1
-    LoopIdx = 0
+    loopIdx = 0
   }
 
-  for(; LoopIdx < strs.length; LoopIdx++) {
-    const curIdx = LoopIdx
-    const nextIdx = LoopIdx + 1
+  for(; loopIdx < strs.length; loopIdx++) {
+    const curIdx = loopIdx
+    const nextIdx = loopIdx + 1
     const cur = strs[curIdx]
     const next = strs[nextIdx]
     if (cur !== next) {
