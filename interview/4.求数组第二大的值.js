@@ -1,4 +1,6 @@
 /**
+ * 这道题其实是(leetcode215)：求数组中的第K个最大元素的变种.
+ * 
  * 求数组第二大的值，要求时间复杂度是O(n)
  * 不准排序
  */
@@ -24,4 +26,4 @@ function getSecondValue(arr) {
   return second
 }
 
-console.log(getSecondValue([10, 4, 12, 33, 1, 3, 13]))
+// console.log(getSecondValue([10, 4, 12, 33, 1, 3, 13]))
