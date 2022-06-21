@@ -4,10 +4,6 @@ const { listTable } = require('../utils')
 
 let tplList = require('../../templates')
 
-console.log(__dirname)
-
-return 
-
 const question = [
   {
     type: 'input',
