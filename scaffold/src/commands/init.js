@@ -1,12 +1,14 @@
 const { prompt } = require('inquirer')
-const { writeFile } = require('fs')
-const { listTable } = require('../utils')
-const { resolve } = require('path')
 const chalk = require('chalk')
 const download = require('download-git-repo')
 const ora = require('ora')
+const { exit, cwd } = require('node:process')
 
-let tplList = require('../../templates')
+const { listTable } = require('../utils')
+const tplList = require('../../templates')
+const generateProject = require('../utils/generateProject')
+
+listTable(tplList)
 
 const question = [
   {
@@ -16,12 +18,14 @@ const question = [
     validate(val) {
       if (tplList[val]) {
         return true
-      } else if (val === '') {
-        return 'Name is required!'
-      } else {
-        return `This template doesn\'t exists. 
-          options: ${Object.keys(tplList)}`
       }
+      
+      if (val === '') {
+        return 'Name is required!'
+      }
+
+      return `This template doesn\'t exists. 
+          options: ${Object.keys(tplList)}`
     },
   },
   {
@@ -35,27 +39,28 @@ const question = [
       return 'Project name is required!'
     },
   },
-  {
-    type: 'input',
-    name: 'place',
-    message: 'Where to init the Local project:',
-    default: './',
-  },
 ]
 
-module.exports = prompt(question).then(({ name, place: localPath, project: localProject }) => {
+module.exports = prompt(question).then((answers) => {
+  const { name, project: projectName } = answers
+
   const gitPlace = tplList[name]['owner/name']
   const gitBranch = tplList[name]['branch']
-  
+
   const spinner = ora('Downloading template...')
   spinner.start()
 
-  download(`direct:https://github.com/${gitPlace}.git#${gitBranch}`, `${localPath}/${localProject}`, { clone: true }, (err) => {
+  download(`direct:https://github.com/${gitPlace}.git#${gitBranch}`, `./${projectName}`, { clone: true }, (err) => {
     if (err) {
       console.log(chalk.red(err))
-      process.exit()
+      exit(1)
     }
-    spinner.stop()
-    console.log(chalk.green('New project has been initialized successfully!'))
+
+    const path = `${cwd()}/${projectName}`
+    generateProject({ answers, dist: path }, () => {
+      spinner.stop()
+
+      console.log(chalk.green(`\u2714 New project has been initialized successfully!`))
+    })
   })
 })

@@ -50,6 +50,7 @@ module.exports = prompt(question).then(({ name, place, branch }) => {
     (err) => {
       if (err) {
         console.log(err)
+        return
       }
 
       listTable(tplList, 'New template has been added successfully!')

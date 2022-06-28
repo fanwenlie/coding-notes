@@ -49,7 +49,7 @@ program
 
 program
   .command('map')
-  .description('Place files to diffirent position')
+  .description('Place files to different position')
   .alias('m')
   .action(() => {
     require(resolveFile('map'))

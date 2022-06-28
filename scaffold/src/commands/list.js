@@ -2,4 +2,8 @@ const { listTable } = require(`../utils`)
 
 let tplList = require('../../templates')
 
-module.exports = listTable(tplList)
+const list = () => {
+  listTable(tplList)
+}
+
+module.exports = list()

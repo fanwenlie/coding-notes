@@ -3,6 +3,9 @@ const { writeFile } = require('fs')
 const { listTable } = require('./utils')
 
 let tplList = require('../../templates')
+const { listTable } = require('../utils')
+
+listTable(tplList)
 
 const question = [
   {
@@ -31,6 +34,7 @@ module.exports = prompt(question).then(({ name }) => {
     (err) => {
       if (err) {
         console.log(err)
+        return
       }
 
       listTable(tplList, 'New template has been added successfully!')
