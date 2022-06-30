@@ -12,49 +12,64 @@
   相关扩展面试题：红黄绿路灯每隔一秒循环执行
  */
 
+// 0会很快就输出，不会等1秒
 function p() {
   const promises = []
 
   const output = (i) => {
     return new Promise((resolve) => {
       setTimeout(() => {
-        console.log(i)
+        console.log(i === 5 ? `end ${i}` : i)
         resolve()
-      }, i * 1000);
+      }, i * 1000)
     })
   }
 
-  for (var i = 0; i < 5; i++) {
+  for (var i = 0; i <= 5; i++) {
     promises.push(output(i))
   }
 
-  Promise.all(promises).then(() => {
-    setTimeout(() => {
-      console.log('end', i)
-    }, 1000);
-  })
+  Promise.all(promises)
 }
 
-// p()
+p()
 
 /**
  * 用async/await改造代码
+ * 0会等1秒再输出
  */
 async function loop() {
   const sleep = () => {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve()
-      }, 1000);
+      }, 1000)
     })
   }
 
-  for (var i = 0; i < 5; i++) {
+  for (let i = 0; i <= 5; i++) {
     await sleep()
-    console.log(i)
+    console.log(i === 5 ? `end ${i}` : i)
+  }
+}
+// loop()
+
+// 不用for改用高阶函数
+async function loopFn() {
+  const sleep = (i) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(i)
+      }, 1000)
+    })
   }
 
-  await sleep()
-  console.log('end', i)
+  [0, 1, 2, 3, 4, 5].reduce(async (p, idx) => {
+    return p.then(() => {
+      console.log(idx === 5 ? `end ${idx}` : idx)
+      return sleep(idx)
+    })
+  }, sleep(0))
 }
-loop()
+
+// loopFn()
