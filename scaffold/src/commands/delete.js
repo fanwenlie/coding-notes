@@ -37,7 +37,7 @@ module.exports = prompt(question).then(({ name }) => {
         return
       }
 
-      listTable(tplList, 'New template has been added successfully!')
+      listTable(tplList, 'This template has been deleted!')
     }
   )
 })
