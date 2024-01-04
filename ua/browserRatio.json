@@ -1,0 +1,18 @@
+{
+	"Chrome": {
+		"count": 791924,
+		"ratio": "94.73965%"
+	},
+	"Safari": {
+		"count": 32833,
+		"ratio": "3.927886%"
+	},
+	"Firefox": {
+		"count": 11110,
+		"ratio": "1.329114%"
+	},
+	"Google": {
+		"count": 28,
+		"ratio": "0.00335%"
+	}
+}
