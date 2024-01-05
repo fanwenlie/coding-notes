@@ -16,9 +16,9 @@ function flat(arr) {
   let ret = []
 
   while (stack.length) {
-    const item = stack.pop()
+    const item = stack.shift()
     if (Array.isArray(item)) {
-      stack = stack.concat(item)
+      stack = item.concat(stack)
     } else {
       ret.push(item)
     }
@@ -27,6 +27,6 @@ function flat(arr) {
   return ret
 }
 
-console.log( flat( [1, 2, 3, [1, 2, 3, [444, 6]] ] ) )
+console.log( flat( [1, 2, 3, [1, 2, 3, [444, 6]], 7, 8, 9 ] ) )
 
 
