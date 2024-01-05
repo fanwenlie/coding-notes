@@ -1,10 +1,10 @@
-function flattern(arr) {
+function flatten(arr) {
   return [].concat(
-    ...arr.map( x => Array.isArray(x) ? flattern(x) : x)
+    ...arr.map( x => Array.isArray(x) ? flatten(x) : x)
   )
 }
 
-console.log( flattern( [1, 2, 3, [1, 2, 3, [444, 6]] ] ) )
+console.log( flatten( [1, 2, 3, [1, 2, 3, [444, 6]] ] ) )
 
 /**
  * 用栈来取代递归
