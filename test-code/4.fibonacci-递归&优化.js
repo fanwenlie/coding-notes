@@ -18,7 +18,7 @@
 
 console.time('尾递归');
 function fibB(n, a = 1, b = 1) {
-	if (n === 1) {
+	if (n <= 1) {
 		return a;
 	}
 	if (n === 2) {
