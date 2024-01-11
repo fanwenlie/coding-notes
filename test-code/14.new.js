@@ -8,6 +8,7 @@
  */
 
 function _new(fn, ...args) {
+  if (typeof fn !== 'function') { return new TypeError(`${JSON.stringify(fn)} is not a constructor`) }
   // 不要直接操作__proto__属性：[__proto__属性详解](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/proto)
   // const obj = {
   //   __proto__: fn.prototype
